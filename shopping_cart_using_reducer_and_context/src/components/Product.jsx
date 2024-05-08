@@ -2,8 +2,14 @@ import React from "react";
 import { useCart } from "../contexts/CartProvider";
 
 function Product({ id, img, title, price }) {
-  const { handleNewCartItem } = useCart();
+  const { handleNewCartItem, cart } = useCart();
   const handleAdd = () => {
+    for (let items of cart) {
+      if (items.id === id) {
+        alert("Item Already exists in cart");
+        return;
+      }
+    }
     const newCartItem = {
       id: id,
       img: img,
@@ -12,6 +18,7 @@ function Product({ id, img, title, price }) {
       quantity: 1,
     };
     handleNewCartItem(newCartItem);
+    alert("item added!!!");
   };
   return (
     <div
