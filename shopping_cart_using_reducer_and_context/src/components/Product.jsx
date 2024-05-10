@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart } from "../contexts/CartProvider";
-
+import styles from "./Product.module.css";
 function Product({ id, img, title, price }) {
   const { handleNewCartItem, cart } = useCart();
   const handleAdd = () => {
@@ -21,18 +21,14 @@ function Product({ id, img, title, price }) {
     alert("item added!!!");
   };
   return (
-    <div
-      style={{
-        margin: "1rem",
-        padding: "1rem",
-        border: "1px solid black",
-      }}
-    >
+    <div className={styles.product}>
       <p>ID : {id}</p>
-      <img src={img} alt={title} height={200} />
-      <p>Title : {title}</p>
-      <p>Price : {price}</p>
-      <button onClick={handleAdd}>Add To Cart</button>
+      <img src={img} alt={title} className={styles.productImg} />
+      <p className={styles.title}>{title}</p>
+      <p className={styles.price}>{price}</p>
+      <button onClick={handleAdd} className={styles.addToCartBtn}>
+        Add To Cart
+      </button>
     </div>
   );
 }

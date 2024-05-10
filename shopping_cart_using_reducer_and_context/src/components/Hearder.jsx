@@ -9,6 +9,13 @@ function Hearder() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { cart } = useCart();
 
+  //acc = 0 item.quantity = 1 => 1
+  //acc = 1 item.quantity = 1 => 2
+  //acc = 2 item.quantity = 1 => 3
+  //like this it will work out
+  const totalQuantity = cart.reduce((acc, item) => {
+    return acc + item.quantity;
+  }, 0);
   const handleModalShow = () => {
     if (cart.length === 0) {
       alert("card is empty please add items then open cart");
@@ -34,7 +41,9 @@ function Hearder() {
           <button className={styles.showCartButton} onClick={handleModalShow}>
             <span className={styles.cartIconAndNumber}>
               <FaShoppingCart />
-              <span className={styles.number}>{10}</span>
+              {totalQuantity > 0 && (
+                <span className={styles.number}>{totalQuantity}</span>
+              )}
             </span>
             <span>Cart</span>
           </button>
