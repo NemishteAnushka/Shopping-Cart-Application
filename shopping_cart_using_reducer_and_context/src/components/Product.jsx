@@ -22,10 +22,9 @@ function Product({ id, img, title, price }) {
   };
   return (
     <div className={styles.product}>
-      <p>ID : {id}</p>
       <img src={img} alt={title} className={styles.productImg} />
       <p className={styles.title}>{title}</p>
-      <p className={styles.price}>{price}</p>
+      <p className={styles.price}> &#8377; {price}</p>
       <button onClick={handleAdd} className={styles.addToCartBtn}>
         Add To Cart
       </button>
